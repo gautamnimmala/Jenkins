@@ -2,7 +2,7 @@
 ${SSH_K8S-MASTER_NODE} 'pwd; ls'
 ${SSH_K8S-MASTER_NODE} 'git clone https://github.com/gautamnimmala/Jenkins.git'
 ${SSH_K8S-MASTER_NODE} 'cd Jenkins'
-${SSH_K8S-MASTER_NODE} 'docker build -f Dockerfile.nginx -t nginxweb:1.1'
+${SSH_K8S-MASTER_NODE} 'docker build -f Dockerfile.nginx -t nginxweb:1.1 .'
 ${SSH_K8S-MASTER_NODE} 'docker images'
 ${SSH_K8S-MASTER_NODE} 'kubectl get nodes'
 nodes_status= `${SSH_K8S-MASTER_NODE} 'kubectl get nodes' |grep k8s-master`
