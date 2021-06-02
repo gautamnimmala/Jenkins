@@ -1,0 +1,19 @@
+# Default values for k8snginxst.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+stengineering:
+     namespace: stengineering
+replicaCount: 1
+
+image:
+  repository: k8snginx:1.1
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "1.1"
+
+service:
+  type: NodePort
+  port: 30080
+
+  hosts:
+    - host: k8-master

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "k8snginxst.fullname" . }}
+  namespace: {{ .Values.stengineering.namespace }}
+  labels:
+     app: k8snginx
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+      app: k8snginx

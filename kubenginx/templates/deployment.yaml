@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "k8snginxst.fullname" . }}
+  namespace: {{ .Values.stengineering.namespace }}
+  labels:
+    {{- include "k8snginxst.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+        app: k8snginx
+  template:
+    metadata:
+      labels:
+         app: k8snginx
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: k8snginx:1.1
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
